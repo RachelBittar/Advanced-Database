@@ -1,0 +1,155 @@
+/*CREATE TABLE STUDENT*/
+
+create table STUDENT (
+
+STUDENT_ID INT primary key,
+
+SName varchar(12) not null,
+
+Lname Char(10) not null,
+
+DOB date,
+
+GENDER Char(1),
+
+Dept_ID int,
+
+foreign key (Dept_ID) references DEPARTAMENT(Dept_ID)); 
+
+
+
+/*CREATE TABLE DEPARTAMENT*/
+
+create table DEPARTAMENT(
+
+Dept_ID int primary key,
+
+DName varchar(15) not null unique,
+
+Location char(1) not null check (Location='A' or Location='B'or Location='C'));
+
+
+
+/*Insert values into DEPARTAMENT */
+
+insert into DEPARTAMENT (DEPT_ID, DName, location)
+
+Values (77,' Engienneering', 'B');
+
+insert into departament (DEPT_ID, DName, location)
+
+Values (5,' ART', 'B');
+
+
+
+/*Insert values into STUDENT */
+
+insert into STUDENT 
+
+values (1111, 'Rachel', 'Bittar', '27-aug-1989','F', 11);
+
+insert into STUDENT 
+
+values (2222, 'Rachel', 'Bittar', '27-aug-1989','F', 11);
+
+insert into STUDENT 
+
+values (3333, 'Jose', 'aff', '27-aug-1989','M', 12, 654878645);
+
+
+
+/*Update values into Student */
+
+update STUDENT
+
+set SName = 'Ligia'
+
+where STUDENT_ID = 1111;
+
+
+
+update STUDENT
+
+set LName = 'Affonso'
+
+where STUDENT_ID = 3333;
+
+
+
+/*ADD coluna para a tabela de estudentes ALTER*/
+
+Alter table STUDENT
+
+add Phone int;
+
+/*Update values into Student phone */
+
+update STUDENT
+
+set Phone = 6475555557
+
+where STUDENT_ID = 1111;
+
+
+
+
+
+/*Update values into DEPARTAMENT */
+
+update DEPARTAMENT
+
+set DNAME = ' Computer'
+
+where DEPT_ID = 12;
+
+
+
+/*Select Values inside DEPARTAMENT */
+
+SELECT * FROM DEPARTAMENT
+
+/*That has DEPT_ID>5 */
+
+WHERE DEPT_ID > 5;
+
+
+
+/*Select Values inside STUDENT */
+
+SELECT * FROM STUDENT;
+
+Order by LName
+
+WHERE SName = 'PEDRO';
+
+
+
+SELECT lower (LName) FROM STUDENT;
+
+SELECT upper (LName) FROM STUDENT;
+
+SELECT substr(LName ,0,6) as Output FROM STUDENT;
+
+
+
+SELECT instr(LName,'i') as Location FROM STUDENT;
+
+
+
+SELECT length('LName') as "Name_length"  FROM STUDENT;
+
+SELECT DNAME, LPAD(DNAME,15,'*') FROM DEPARTAMENT;
+
+SELECT DNAME, RPAD(DNAME,25,'*') FROM DEPARTAMENT;
+
+SELECT DNAME, Replace('i','I') FROM DEPARTAMENT;
+
+
+
+
+
+SELECT CONCAT(CONCAT(Sname, ' '), LName)as "FullName" FROM STUDENT ;
+
+
+
+SELECT dob, add_months (DOB,13) as "Updated DOB" FROM STUDENT Where STUDENT_ID = 3333;
